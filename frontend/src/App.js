@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from './config.js';
 import Torus from "@toruslabs/torus-embed";
 //import Counter from './pages/Counter.js';
 //import Header from './pages/Header.js';
@@ -68,6 +69,12 @@ class App extends Component {
   //  this.setState({ testContract })
     //const count = await testContract.methods.getCounter().call()
     //this.setState({ count })
+
+    const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
+    this.setState({contract})
+
+    const getCounter = await contract.methods.counter().call()
+    this.setState({ counter: getCounter })
 
   }
 
