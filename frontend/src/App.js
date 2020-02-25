@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Torus from "@toruslabs/torus-embed";
 //import Counter from './pages/Counter.js';
 //import Header from './pages/Header.js';
 //import Footer from './pages/Footer.js';
@@ -16,6 +17,22 @@ class App extends Component {
   }
 
   async loadBlockchainData() {
+
+    const torus = new Torus({
+      buttonPosition: "bottom-left" // default: bottom-left
+    });
+    await torus.init({
+      buildEnv: "production", // default: production
+      enableLogging: true, // default: false
+      network: {
+        host: "ropsten", // default: mainnet
+        chainId: 3, // default: 1
+        networkName: "Ropsten Test Network" // default: Main Ethereum Network
+      },
+      showTorusButton: true // default: true
+    });
+    await torus.login(); // await torus.ethereum.enable()
+    const web3 = new Web3(torus.provider);
 
     //const infuraNode = {
     //  nodeUrl: '',
@@ -35,15 +52,15 @@ class App extends Component {
     // const portis = new Portis('96749b1d-1384-4d19-96fb-bad5a4a76fff', 'mySkaleChain')
     // const portis = new Portis('96749b1d-1384-4d19-96fb-bad5a4a76fff', 'mainnet')
     // const web3 = new Web3(portis.provider)
-    // const accounts = await web3.eth.getAccounts()
+     const accounts = await web3.eth.getAccounts()
     // this.setState({ account: accounts[0] })
 
     //web3.eth.getAccounts((error, accounts ) => {
     //  console.log(accounts)
     //})
 
-    const web3 = new Web3(Web3.givenProvider || 'https://localhost:8545')
-    const accounts = await web3.eth.getAccounts()
+  //  const web3 = new Web3(Web3.givenProvider || 'https://localhost:8545')
+  //  const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] });
 
     // set contract
