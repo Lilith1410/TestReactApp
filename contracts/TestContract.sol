@@ -3,7 +3,7 @@ pragma solidity >=0.4.21 <0.7.0;
 contract TestContract{
 
   address public owner;
-  uint private counter;
+  uint public counter;
 
   constructor() public {
     owner = msg.sender;
@@ -11,12 +11,12 @@ contract TestContract{
   }
 
   function getCounter() public returns (uint) {
-    return this.counter;
+    return counter;
   }
 
 
   function incrementCounter() public {
-    counter++; 
+    counter++;
   }
 
 }
