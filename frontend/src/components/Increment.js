@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from "rimble-ui";
+import { Box, Button, Heading, Text }from "rimble-ui";
 
 class Increment extends Component {
 
@@ -9,14 +9,17 @@ class Increment extends Component {
   }
 
   onClickHandler(e) {
-
+    this.props.IncrementButton()
   }
 
 
   render() {
     return (
       <div className="Increment">
-        <Button onClick={this.onClickHandler}>Increment Counter</Button>
+            Hello World
+            Your Account: {this.props.account}
+            Counter Number: {this.props.counter}
+            <Button onClick={this.onClickHandler}>Increment Counter</Button>
       </div>
     );
   }

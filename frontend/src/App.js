@@ -5,6 +5,7 @@ import Torus from "@toruslabs/torus-embed";
 import Web3 from 'web3';
 import { Box, Button, Heading, Text } from 'rimble-ui';
 import IPFSUpload from './components/IPFSUpload';
+import Increment from './components/Increment'
 import ipfsAPI from 'ipfs-http-client'
 
 class App extends Component {
@@ -81,20 +82,25 @@ class App extends Component {
    }
 
 
+   IncrementButton = async() => {
+     console.log("Increment Button")
+     this.increment()
+   }
+
+   async increment() {
+     await this.state.contract.methods.incrementCounter().call
+     var newCounter = this.state.contract.methods.counter().call
+     this.setState({ counter: newCounter })
+   }
+
+
 
   render() {
     return (
       <div className="App">
-        <Box>
-          <Heading>
-            <Text>Hello World</Text>
-            <Text>Your Account: {this.state.account} </Text>
-            <Text>Counter Number: {this.state.counter} </Text>
-            <Increment IncrementButton={this.IncrementButton} />
-          </Heading>
-        </Box>
-        <br />
         <IPFSUpload IPFSUploadButton={this.IPFSUploadButton} />
+        <br />
+        <Increment IncrementButton={this.IncrementButton} account={this.state.account} counter={this.state.counter} />
       </div>
     );
   }
