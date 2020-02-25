@@ -4,7 +4,7 @@ import { CONTRACT_ADDRESS, CONTRACT_ABI } from './config.js';
 import Torus from "@toruslabs/torus-embed";
 import Web3 from 'web3';
 import { Box, Button, Heading, Text } from 'rimble-ui';
-import IPFSUpload from './pages/IPFSUpload';
+import IPFSUpload from './components/IPFSUpload';
 import ipfsAPI from 'ipfs-http-client'
 
 class App extends Component {
@@ -90,7 +90,7 @@ class App extends Component {
             <Text>Hello World</Text>
             <Text>Your Account: {this.state.account} </Text>
             <Text>Counter Number: {this.state.counter} </Text>
-            <Button.Outline> Increment Counter </Button.Outline>
+            <Increment IncrementButton={this.IncrementButton} />
           </Heading>
         </Box>
         <br />
