@@ -16,9 +16,9 @@ class Increment extends Component {
   render() {
     return (
       <div className="Increment">
-            Hello World
-            Your Account: {this.props.account}
-            Counter Number: {this.props.counter}
+            Hello World <br />
+            Your Account: {this.props.account} <br />
+            Counter Number: {this.props.counter} <br />
             <Button onClick={this.onClickHandler}>Increment Counter</Button>
       </div>
     );

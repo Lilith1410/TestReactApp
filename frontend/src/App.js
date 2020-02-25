@@ -44,7 +44,7 @@ class App extends Component {
     this.setState({ account: accounts[0] });
 
     const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
-    this.setState({contract});
+    this.setState({contract: contract});
 
     const getCounter = await contract.methods.counter().call()
     this.setState({ counter: getCounter })
@@ -88,8 +88,8 @@ class App extends Component {
    }
 
    async increment() {
-     await this.state.contract.methods.incrementCounter().call
-     var newCounter = this.state.contract.methods.counter().call
+     await this.state.contract.methods.incrementCounter().send({from: this.state.account});
+     var newCounter = this.state.contract.methods.counter().call();
      this.setState({ counter: newCounter })
    }
 
